@@ -35,6 +35,8 @@ It is generally not recommended to store sensitive information such as Fleet enr
 
 To include some of these items in plaintext, use the `--insecure` option. It adds enroll secrets, certificate authority secrets (except EJBCA), SSO metadata, and end user authentication metadata. The Fleet API never returns some secrets, such as the SMTP password and integration API tokens. For these, `generate-gitops` always leaves comments and lists them at the end, so you still add them by hand. Don't commit files generated with `--insecure` to version control.
 
+If enroll secrets, labels, or software are excepted from GitOps management (**Settings** > **Integrations** > **Change management**), the generated files leave out those keys, even with `--insecure`, because `fleetctl gitops` rejects them. The command lists each key it left out at the end.
+
 ## Other options
 
 The `generate-gitops` tool includes a few other options to make migrating to GitOps easier:
